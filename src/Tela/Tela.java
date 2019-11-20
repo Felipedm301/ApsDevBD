@@ -49,9 +49,9 @@ public class Tela extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        BoxSelectClient = new javax.swing.JComboBox<>();
+        BoxSelectLocal = new javax.swing.JComboBox<>();
+        BoxSelectProd = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -112,16 +112,26 @@ public class Tela extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        BoxSelectClient.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        BoxSelectClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                BoxSelectClientActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        BoxSelectLocal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        BoxSelectLocal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoxSelectLocalActionPerformed(evt);
+            }
+        });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        BoxSelectProd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        BoxSelectProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoxSelectProdActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -135,8 +145,8 @@ public class Tela extends javax.swing.JDialog {
                             .addComponent(jLabel1)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
-                            .addComponent(jComboBox1, 0, 144, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(BoxSelectClient, 0, 144, Short.MAX_VALUE)
+                            .addComponent(BoxSelectProd, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -154,7 +164,7 @@ public class Tela extends javax.swing.JDialog {
                                                 .addComponent(VenderB, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(BoxSelectLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(166, 166, 166)
@@ -188,8 +198,8 @@ public class Tela extends javax.swing.JDialog {
                             .addComponent(jLabel2))
                         .addGap(30, 30, 30))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(BoxSelectClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BoxSelectLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -198,7 +208,7 @@ public class Tela extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CampoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(VenderB)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BoxSelectProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ExcluirB)
@@ -232,16 +242,46 @@ public class Tela extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void BoxSelectClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxSelectClientActionPerformed
         // TODO add your handling code here:
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/apsbd","root","root");
+        Integer index = BoxSelectClient.getSelectedIndex();
+        
+        if (index > 0) {
+            BoxSelectLocal.setEnabled(true);
+        } else {
+            BoxSelectLocal.getSelectedIndex();
+            BoxSelectLocal.setEnabled(false);
             
-            
-        } catch (Exception e) {
         }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_BoxSelectClientActionPerformed
+
+    private void BoxSelectLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxSelectLocalActionPerformed
+        // TODO add your handling code here:
+        Integer index = BoxSelectLocal.getSelectedIndex();
+
+        if (index > 0) {
+            BoxSelectProd.setEnabled(true);
+        } else {
+            BoxSelectProd.setSelectedIndex(0);
+            BoxSelectProd.setEnabled(false);
+        }
+    }//GEN-LAST:event_BoxSelectLocalActionPerformed
+
+    private void BoxSelectProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxSelectProdActionPerformed
+        // TODO add your handling code here:
+        Integer index = BoxSelectProd.getSelectedIndex();
+
+        if (index > 0) {
+            CampoQuantidade.setEditable(true);
+            VenderB.setEnabled(true);
+            VenderB.setToolTipText("");
+        } else {
+            CampoQuantidade.setText("0");
+            CampoQuantidade.setEditable(false);
+            VenderB.setEnabled(false);
+            VenderB.setToolTipText("Falta Preencher os dados...");
+        }
+    }//GEN-LAST:event_BoxSelectProdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,6 +326,9 @@ public class Tela extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> BoxSelectClient;
+    private javax.swing.JComboBox<String> BoxSelectLocal;
+    private javax.swing.JComboBox<String> BoxSelectProd;
     private javax.swing.JTextField CampoQuantidade;
     private javax.swing.JTextField Descrição;
     private javax.swing.JButton ExcluirB;
@@ -293,9 +336,6 @@ public class Tela extends javax.swing.JDialog {
     private javax.swing.JTextField SaidaTotal;
     private javax.swing.JButton VenderB;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
