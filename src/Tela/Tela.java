@@ -21,10 +21,7 @@ import pontoDeVenda.Modelos.Cliente;
 import pontoDeVenda.Modelos.Localidade;
 import pontoDeVenda.Modelos.Produto;
 
-/**
- *
- * @author Felipe
- */
+
 public class Tela extends javax.swing.JDialog {
 
     /**
@@ -53,11 +50,12 @@ public class Tela extends javax.swing.JDialog {
                 clientes[i] = re.getNString("NOME");
                         i++;
             }
+            BoxSelectClient.setModel(new DefaultComboBoxModel<>(clientes));
         } catch (Throwable ex) {
             JOptionPane.showMessageDialog(null, "Erro desconhecido, contate a T.I: \n" + ex.toString());
         }
         
-        BoxSelectClient.setModel(new DefaultComboBoxModel<>(clientes));
+        
     }
 
     private void CarregarLocalidades() {
@@ -72,11 +70,10 @@ public class Tela extends javax.swing.JDialog {
                 localidade[i] = re.getNString("NOME");
                         i++;
             }
+            BoxSelectLocal.setModel(new DefaultComboBoxModel<>(localidade));
         } catch (Throwable ex) {
             JOptionPane.showMessageDialog(null, "Erro desconhecido, contate a T.I: \n" + ex.toString());
         }
-        
-        BoxSelectLocal.setModel(new DefaultComboBoxModel<>(localidade));
 
     }
 
