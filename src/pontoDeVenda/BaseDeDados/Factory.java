@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 public class Factory {
 
     private static Connection conexão = null;
-    private static final String baseDeDados = "PontoDeVenda";
+    private static final String baseDeDados = "apsbd";
     private static final String urlDeConexao = "jdbc:mysql://localhost:3306/" + baseDeDados;
     private static final String usuario = "root";
     private static final String senha = "root";

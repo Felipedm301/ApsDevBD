@@ -7,6 +7,19 @@ package Tela;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import pontoDeVenda.AcessoAosDados.DadosCliente;
+import pontoDeVenda.AcessoAosDados.DadosLocalidade;
+import pontoDeVenda.AcessoAosDados.DadosProduto;
+import pontoDeVenda.BaseDeDados.Factory;
+import pontoDeVenda.Modelos.Cliente;
+import pontoDeVenda.Modelos.Localidade;
+import pontoDeVenda.Modelos.Produto;
 
 /**
  *
@@ -20,8 +33,73 @@ public class Tela extends javax.swing.JDialog {
     public Tela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        CarregarClientes();
+        CarregarLocalidades();
+        CarregarProdutos();
+        ConfiguracaoTabela();
     }
 
+    
+    private void CarregarClientes() {
+        
+        String[] clientes = null;
+        try {
+            Connection c = Factory.obterConexao();
+            Statement st = c.createStatement();
+            ResultSet re = st.executeQuery("SELECT NOME FROM CLIENTE;");
+            clientes[0] = "Selecione um";
+            int i =1;
+            while (re.next()) {
+                clientes[i] = re.getNString("NOME");
+                        i++;
+            }
+        } catch (Throwable ex) {
+            JOptionPane.showMessageDialog(null, "Erro desconhecido, contate a T.I: \n" + ex.toString());
+        }
+        
+        BoxSelectClient.setModel(new DefaultComboBoxModel<>(clientes));
+    }
+
+    private void CarregarLocalidades() {
+        String[] localidade = null;
+        try {
+            Connection c = Factory.obterConexao();
+            Statement st = c.createStatement();
+            ResultSet re = st.executeQuery("SELECT NOME FROM LOCALIDADE;");
+            localidade[0] = "Selecione um";
+            int i =1;
+            while (re.next()) {
+                localidade[i] = re.getNString("NOME");
+                        i++;
+            }
+        } catch (Throwable ex) {
+            JOptionPane.showMessageDialog(null, "Erro desconhecido, contate a T.I: \n" + ex.toString());
+        }
+        
+        BoxSelectLocal.setModel(new DefaultComboBoxModel<>(localidade));
+
+    }
+
+    private void CarregarProdutos() {
+
+        try {
+            Connection c = Factory.obterConexao();
+            Statement st = c.createStatement();
+            ResultSet re = st.executeQuery("SELECT CODPROD FROM LOCALIDADE;");
+            String[] produtos  = null;
+            produtos[0] = "Selecione um";
+            int i =1;
+            while (re.next()) {
+                produtos[i] = Integer.toString(re.getInt("CODPROD"));
+                        i++;
+            }
+            BoxSelectProd.setModel(new DefaultComboBoxModel<>(produtos));
+        } catch (Throwable ex) {
+            JOptionPane.showMessageDialog(null, "Erro desconhecido, contate a T.I: \n" + ex.toString());
+        }
+
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,7 +126,7 @@ public class Tela extends javax.swing.JDialog {
         SaidaTotal = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Table = new javax.swing.JTable();
         BoxSelectClient = new javax.swing.JComboBox<>();
         BoxSelectLocal = new javax.swing.JComboBox<>();
         BoxSelectProd = new javax.swing.JComboBox<>();
@@ -99,7 +177,7 @@ public class Tela extends javax.swing.JDialog {
 
         jButton1.setText("Fechar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -110,7 +188,7 @@ public class Tela extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(Table);
 
         BoxSelectClient.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         BoxSelectClient.addActionListener(new java.awt.event.ActionListener() {
@@ -255,6 +333,14 @@ public class Tela extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BoxSelectClientActionPerformed
 
+    private void ConfiguracaoTabela() {
+        Table.getColumnModel().getColumn(0).setMaxWidth(50);
+        Table.getColumnModel().getColumn(1).setMinWidth(200);
+        Table.getColumnModel().getColumn(2).setMaxWidth(80);
+        Table.getColumnModel().getColumn(3).setMaxWidth(100);
+        Table.getColumnModel().getColumn(4).setMaxWidth(100);
+    }
+    
     private void BoxSelectLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoxSelectLocalActionPerformed
         // TODO add your handling code here:
         Integer index = BoxSelectLocal.getSelectedIndex();
@@ -334,6 +420,7 @@ public class Tela extends javax.swing.JDialog {
     private javax.swing.JButton ExcluirB;
     private javax.swing.JLabel LCaixaLivre;
     private javax.swing.JTextField SaidaTotal;
+    private javax.swing.JTable Table;
     private javax.swing.JButton VenderB;
     private javax.swing.JButton jButton1;
     private javax.swing.JDialog jDialog1;
@@ -346,6 +433,5 @@ public class Tela extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
